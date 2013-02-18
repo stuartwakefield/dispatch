@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="application/javascript" src="../src/array.js"></script>
+		<script type="application/javascript" src="../src/type.js"></script>
+		<script type="application/javascript" src="../src/dispatcher.js"></script>
+		<script type="application/javascript" src="../src/router.js"></script>
+		<script type="application/javascript" src="../src/interval_route_listener.js"></script>
+		<script type="application/javascript" src="../src/controller_dispatcher.js"></script>
+		<script type="application/javascript">
+
+			var dispatcher = new Dispatcher();
+			var router = new Router(dispatcher);
+			var listener = new IntervalRouteListener(router);
+			
+			dispatcher.bind("home", {
+				handle: function() {
+					console.log("I'm home!");
+				}
+			});
+
+			dispatcher.bind("about", {
+				handle: function() {
+					console.log("About");
+				}
+			});
+
+			router.bind("/", "home");
+			router.bind("/about", "about");
+
+			listener.start();
+
+		</script>
+	</head>
+</html>
