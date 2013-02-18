@@ -14,16 +14,28 @@
 			var listener = new IntervalRouteListener(router);
 			
 			dispatcher.bind("home", {
-				handle: function() {
+				handle: function(args) {
 					console.log("I'm home!");
 				}
 			});
 
 			dispatcher.bind("about", {
-				handle: function() {
+				handle: function(args) {
 					console.log("About");
 				}
 			});
+
+			var controllerDispatcher = new ControllerDispatcher(dispatcher);
+
+			controllerDispatcher.bind({
+				index: function(args) {
+					console.log("Controller home!");
+				},
+				about: function(args) {
+					console.log("Controller about!");
+				}
+			}, [ "home",  "index",
+				 "about", "about" ]);
 
 			router.bind("/", "home");
 			router.bind("/about", "about");
