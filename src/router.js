@@ -35,7 +35,7 @@ function Router(dispatcher) {
 
 	}
 
-	this.route = function(route, args) {
+	this.route = function(route) {
 		var ev = Router.resolveRoute(routes, route);
 		var dispatched = false;
 		if(ev !== undefined) {
